@@ -3,6 +3,7 @@
 fn exercise1() {
     // Use as many approaches as you can to make it work
     let x = String::from("hello, world");
+
     let y = &x;
     let z = &x;
 }
@@ -42,8 +43,10 @@ fn exercise3() {
         let mut addition: f64 = 0.0;
 
         // Sumar valores en additions
+
         for element_index in &additions {
             let addition_aux = values[*element_index];
+
             addition = addition_aux + addition;
         }
     }
@@ -54,7 +57,9 @@ fn exercise3() {
 fn exercise4(value: u32) -> &'static str {
     let str_value = value.to_string(); // Convert u32 to String
     let str_ref: &str = &str_value; // Obtain a reference to the String
+
     Box::leak(str_ref.to_string().into_boxed_str()) // Return the reference to the String
+
 }
 
 // Exercise 5
@@ -70,6 +75,7 @@ fn exercise5() {
         None => {
             let value = "3.0".to_string();
             my_map.insert(key, value);
+
             my_map.get(&key).unwrap()// HERE IT FAILS
         }
     };
@@ -83,6 +89,7 @@ fn exercise5() {
 use std::io;
 
 fn exercise6() {
+
     let mut prev_key: String = String::from("");
 
     for line in io::stdin().lines() {
@@ -91,6 +98,7 @@ fn exercise6() {
         let data: Vec<&str> = s.split("\t").collect();
         if prev_key.len() == 0 {
             prev_key = data[0].to_owned();
+
         }
     }
 }
@@ -99,8 +107,11 @@ fn exercise6() {
 // Make it compile
 fn exercise7() {
     let mut v: Vec<&str> = Vec::new();
+
+
     let chars = [b'x', b'y', b'z'];
     {
+
         let s: &str = std::str::from_utf8(&chars).unwrap();
         v.push(&s);
     }
@@ -110,7 +121,10 @@ fn exercise7() {
 // Exercise 8
 // Make it compile
 fn exercise8() {
+
+
     let mut accounting: Vec<String> = vec!["Alice".to_string(), "Ben".to_string()];
+
     
     loop {
         let mut add_input = String::from("");
@@ -119,14 +133,20 @@ fn exercise8() {
             .read_line(&mut add_input)
             .expect("Failed to read line");
 
+
+
         let mut add_vec: Vec<String> = add_input.trim()[..].split_whitespace().map(|s| s.to_string()).collect();
+
 
         if add_vec.len() < 1 {
             println!("Incorrect input, try again");
             continue;
         }
 
+
+
         let person = add_vec.remove(0);
+
         accounting.push(person);
     }
 }
